@@ -7,3 +7,9 @@ body {
     margin-inline: auto;
     padding: 1em;
   }
+
+  ul, li {
+    display: contents;
+  }
+
+  
