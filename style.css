@@ -102,3 +102,51 @@ article {
 h2 {
   margin: 0;
 }
+
+h1 {
+  font-size: 400%; 
+  font-weight: bold;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.1; 
+  text-wrap: balance; 
+  margin: 0.5em 0; 
+}
+
+main section {
+  margin-bottom: 2em;
+}
+
+section h2 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+section article {
+  margin-bottom: 1.5em;
+  padding: 1em;
+  border: 1px solid var(--color-gray);
+  border-radius: 0.5em;
+  background: #f9f9f9;
+}
+
+section article h3 {
+  margin: 0 0 0.5em;
+}
+
+section ul, li {
+  list-style: disc; 
+  margin-left: 2em; 
+  padding-left: 1em; 
+}
+
+ul li {
+  margin-bottom: 0.5em; 
+}
+
+.skills-list {
+    list-style: disc !important; 
+    margin-left: 20px; 
+    padding-left: 20px;
+}
