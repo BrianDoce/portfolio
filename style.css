@@ -50,5 +50,4 @@ body {
     padding-bottom: 0.1em;
     border-bottom-color: var(--color-accent);
     background-color: oklch(from var(--color-accent) 90% 5% h);
-
   }
