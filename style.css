@@ -51,3 +51,39 @@ body {
     border-bottom-color: var(--color-accent);
     background-color: oklch(from var(--color-accent) 90% 5% h);
   }
+
+  form {
+    display: grid;
+    grid-template-columns: auto 1fr; 
+    gap: 1em; 
+}
+
+label {
+    grid-column: 1; 
+    text-align: right; 
+    padding-right: 1em; 
+}
+
+input, textarea {
+    grid-column: 2; 
+    width: 100%; 
+    box-sizing: border-box; 
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    grid-column: 1 / -1; 
+    padding: 0.7em 1.5em;
+    border: none;
+    border-radius: 4px;
+    background-color: #007BFF; 
+    color: white;
+    cursor: pointer;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #0056b3; 
+}
