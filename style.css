@@ -1,6 +1,150 @@
 body {
-    /* Set line height to 1.5 times the font size
-         and use the OS’s UI font as the website font
-       */
-    font: 100%/1.5 system-ui;
-  }
+  /* Set line height to 1.5 times the font size
+       and use the OS’s UI font as the website font
+     */
+  font: 100%/1.5 system-ui;
+  max-width: 100ch;
+  margin-inline: auto;
+  padding: 1em;
+}
+
+nav {
+  display: flex;
+  margin-bottom: 1em;
+  border-bottom: 1px solid oklch(80% 3% 200);
+}
+
+nav ul, li{
+  display: contents;
+
+}
+
+nav a {
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  padding: 0.5em;
+}
+
+a.current {
+  border-bottom-width: 0.4em;
+  border-bottom-style: solid;
+  padding-bottom: 0.1em;
+  border-bottom-color: oklch(80% 3% 200);
+}
+
+:root {
+  --color-accent: oklch(65% 50% 0)
+}
+
+html {
+  accent-color: var(--color-accent)
+}
+
+nav a:hover {
+  border-bottom-width: 0.4em;
+  border-bottom-style: solid;
+  padding-bottom: 0.1em;
+  border-bottom-color: var(--color-accent);
+  background-color: oklch(from var(--color-accent) 90% 5% h);
+}
+
+form {
+  display: grid;
+  grid-template-columns: auto 1fr; 
+  gap: 1em; 
+}
+
+label {
+  grid-column: 1; 
+  text-align: right; 
+  padding-right: 1em; 
+}
+
+input, textarea {
+  grid-column: 2; 
+  width: 100%; 
+  box-sizing: border-box; 
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  grid-column: 1 / -1; 
+  padding: 0.7em 1.5em;
+  border: none;
+  border-radius: 4px;
+  background-color: #007BFF; 
+  color: white;
+  cursor: pointer;
+  text-align: center;
+}
+
+button:hover {
+  background-color: #0056b3; 
+}
+
+.projects {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+}
+
+article {
+grid-template-rows: subgrid;
+grid-row: span 3;
+gap: 1em;
+}
+
+h2 {
+margin: 0;
+}
+
+h1 {
+font-size: 400%; 
+font-weight: bold;
+}
+
+h1, h2, h3, h4, h5, h6 {
+line-height: 1.1; 
+text-wrap: balance; 
+margin: 0.5em 0; 
+}
+
+main section {
+margin-bottom: 2em;
+}
+
+section h2 {
+font-size: 2em;
+margin-bottom: 0.5em;
+}
+
+section article {
+margin-bottom: 1.5em;
+padding: 1em;
+border: 1px solid var(--color-gray);
+border-radius: 0.5em;
+background: #f9f9f9;
+}
+
+section article h3 {
+margin: 0 0 0.5em;
+}
+
+section ul, li {
+list-style: disc; 
+margin-left: 2em; 
+padding-left: 1em; 
+}
+
+ul li {
+margin-bottom: 0.5em; 
+}
+
+.skills-list {
+  list-style: disc !important; 
+  margin-left: 20px; 
+  padding-left: 20px;
+}
