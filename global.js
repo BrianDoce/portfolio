@@ -75,3 +75,25 @@ if ("colorScheme" in localStorage) {
     document.documentElement.style.setProperty('color-scheme', localStorage.colorScheme);
     select.value = localStorage.colorScheme;
 }
+
+const form = document.querySelector("form");
+
+form?.addEventListener("submit", function (event) {
+    event.preventDefault(); 
+
+    const data = new FormData(form);
+
+    let url = form.action + "?";
+
+    for (let [name, value] of data) {
+        // value = encodeURIComponent(value); 
+        // url += `${encodeURIComponent(name)}=${value}&`; 
+        console.log('name:', name);
+        console.log('value:', value);
+        console.log('encode:', encodeURIComponent(value))
+    }
+
+    // Remove the trailing '&' and set the location to the mailto URL
+    url = url.slice(0, -1); // Remove the last '&' character
+    location.href = url; 
+});
