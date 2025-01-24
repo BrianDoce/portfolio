@@ -86,14 +86,10 @@ form?.addEventListener("submit", function (event) {
     let url = form.action + "?";
 
     for (let [name, value] of data) {
-        // value = encodeURIComponent(value); 
-        // url += `${encodeURIComponent(name)}=${value}&`; 
-        console.log('name:', name);
-        console.log('value:', value);
-        console.log('encode:', encodeURIComponent(value))
+        url += name + '=' + encodeURIComponent(value) + '&';
     }
-
-    // Remove the trailing '&' and set the location to the mailto URL
-    url = url.slice(0, -1); // Remove the last '&' character
+    
+    
+    url = url.slice(0, -1); 
     location.href = url; 
 });
