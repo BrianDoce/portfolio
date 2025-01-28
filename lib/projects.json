@@ -1,62 +1,74 @@
 [
     {
-        "title": "Brian was here",
+        "title": "Building a Portfolio Website",
+        "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere dolore optio eum quisquam, sapiente quaerat tenetur et, minus, libero eveniet aperiam praesentium labore est eaque dolorem natus voluptatum voluptatibus omnis?"
+        "description": "Designed and built a portfolio website to showcase my projects."
     },
     {
-        "title": "Excepturi, sequi! Consectetur, consequatur.",
+        "title": "Data Visualization with Tableau",
+        "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Voluptas tempora temporibus cupiditate atque error autem, maxime aliquam quae fuga laboriosam expedita enim ad. Quae, magni fugiat ut beatae sed eaque mollitia. Provident aperiam deserunt quisquam tempora, eius eaque."
+        "description": "Created interactive dashboards to analyze housing prices in London."
     },
     {
-        "title": "Quia esse debitis a!",
+        "title": "Sentiment Analysis of Car Reviews",
+        "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Repellat quae amet pariatur labore laudantium earum maxime cupiditate maiores commodi deserunt asperiores nostrum aut nisi, ducimus, adipisci culpa hic minima velit magnam, tenetur vel repellendus autem expedita? Recusandae, minima!"
+        "description": "Performed sentiment analysis on car reviews using NLTK Vader."
     },
     {
-        "title": "Omnis optio corrupti incidunt?",
+        "title": "Web Scraping with Python",
+        "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Dolore velit iste eos quasi accusamus! Laudantium, veniam quae maiores, esse cupiditate dolor impedit culpa nisi voluptate officiis veritatis nemo accusantium error odit est? Beatae consequatur rerum eaque aperiam asperiores."
+        "description": "Web scraped Edmunds.com using Selenium and BeautifulSoup."
     },
     {
-        "title": "Repellendus consectetur fuga modi?",
+        "title": "Customer Segmentation",
+        "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Consequuntur nostrum ullam nesciunt reiciendis exercitationem dolor nam, quisquam quibusdam corporis consequatur tempore. Blanditiis provident accusamus sequi reiciendis quaerat laborum facilis ab veritatis suscipit, tempora eum nesciunt minima, harum odit."
+        "description": "Clustered customers using RFM analysis and k-means."
     },
     {
-        "title": "Minus optio non necessitatibus.",
+       "title": "Data Visualization with MatPlotLib and Seaborn",
+        "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Necessitatibus enim repudiandae debitis ratione, blanditiis sapiente architecto, a, expedita sit ab voluptatem! Rem, unde, optio sint itaque officiis voluptates amet quasi doloribus ea praesentium dolor laborum possimus voluptas mollitia?"
+        "description": "Created a visualization for DSC106."
     },
     {
-        "title": "Qui culpa repellat dolorum.",
+        "title": "ETL Pipeline",
+        "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Sapiente nemo possimus quis fuga ipsam a neque modi nostrum, saepe molestias repellat, esse, iure atque necessitatibus architecto odit deleniti commodi pariatur! Similique, hic soluta aliquam enim odio obcaecati cumque."
+        "description": "Created a full ETL Pipeline using AWS Services."
     },
     {
-        "title": "Error numquam laborum ut?",
+        "title": "Spotify Recomendation",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Ut illum possimus quod. Nesciunt, sed minima. Nemo minus facilis hic officiis, quia blanditiis debitis numquam fugiat accusantium vel eos cupiditate nulla nobis tenetur! Dicta porro temporibus cum vel sed."
+        "description": "Built a recommendation system for Taylor Swift songs."
     },
     {
-        "title": "Harum soluta velit blanditiis.",
+        "title": "Computer Vision Number Identifier",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Impedit inventore perspiciatis doloribus quas quo repellendus ipsa soluta, cumque quibusdam delectus deserunt facilis voluptate ad quos sequi architecto, repudiandae saepe harum fugiat explicabo magni. Optio omnis beatae nam asperiores?"
+        "description": "Created a number identifier that identifies numbers in pictures."
     },
     {
-        "title": "Nihil magni modi recusandae.",
+        "title": "Picture Filters",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Inventore illo, nobis quaerat repudiandae sunt aperiam nostrum. Officia praesentium eum illo libero nemo dolorem facere? Accusantium molestiae eveniet fuga? Eligendi, accusamus corrupti enim corporis voluptatum vero tempore in neque."
+        "description": "Changed the filters of pictures."
     },
     {
-        "title": "Illo maiores repudiandae pariatur.",
+        "title": "Python Calculator",
+        "year": "2022",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Corporis rem voluptatum voluptas distinctio eos atque aperiam, placeat consectetur itaque quaerat maxime rerum officiis quod commodi ullam illum debitis expedita cum reiciendis assumenda voluptatem. Officiis soluta dolores delectus nihil!"
+        "description": "Created a calculator using python."
     },
     {
-        "title": "Molestias, architecto dolores? Ad?",
+        "title": "BlackJack Game",
+        "year": "2022",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Soluta eius et sapiente ipsum tempore perferendis, dolore mollitia. Id laudantium voluptate ipsa amet sequi, modi a officia repellendus quo quam libero placeat beatae sint explicabo delectus! Delectus, rerum harum?"
+        "description": "Created blackjack using python."
     }
 ]
