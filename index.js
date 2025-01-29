@@ -1,7 +1,7 @@
 import { fetchJSON, renderProjects, fetchGitHubData } from './global.js';
 console.log('IT’S index.js!');
 
-const projects = await fetchJSON('lib/projects.json');
+const projects = await fetchJSON('./lib/projects.json');
 const latestProjects = projects.slice(0, 3);
 
 const projectsContainer = document.querySelector('.projects');
