@@ -200,3 +200,58 @@ label.color-scheme {
   margin: 0;
   color: #24292e;
 }
+
+footer.year {
+  font-family: Baskerville;
+  font-variant-numeric: oldstyle-nums
+}
+
+svg {
+  max-width: 20em;
+  margin-block: 2em;
+
+  /* Do not clip shapes outside the viewBox */
+  overflow: visible;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap; /* Ensures it stays responsive */
+  gap: 1rem;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  list-style: none;
+  border: 2px solid #ddd; 
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: fit-content; 
+  text-align: left;
+}
+
+.legend ul{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr)); 
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem; 
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+  padding: 0.4rem 0.6rem;
+}
+
+.legend .swatch {
+  width: 16px;
+  height: 16px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%; 
+  background: var(--color);
+  display: inline-block;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  align-items: center;
+}
