@@ -216,9 +216,9 @@ svg {
 
 .legend {
   display: flex;
-  flex-wrap: wrap; /* Ensures it stays responsive */
+  flex-wrap: wrap; 
   gap: 1rem;
-  padding: 1rem;
+  padding: 0.4rem;
   margin-top: 1.5rem;
   list-style: none;
   border: 2px solid #ddd; 
@@ -226,18 +226,18 @@ svg {
   background: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: fit-content; 
-  text-align: left;
+  flex: 1;
+  align-items: right;
 }
 
-.legend ul{
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr)); 
+.legend ul {
+  align-items: right;
+  padding: 0.4rem;
 }
-
 .legend li {
   display: flex;
   align-items: center;
-  gap: 0.8rem; 
+  gap: 0.2rem; 
   font-size: 0.9rem;
   font-weight: 500;
   color: #333;
@@ -253,5 +253,15 @@ svg {
   display: inline-block;
   box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(0, 0, 0, 0.15);
-  align-items: center;
+  align-items: right;
+  gap: 0.2rem;
+  padding: 0.4rem;
+  flex-shrink: 0;
+}
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  flex: 1;
 }
