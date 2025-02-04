@@ -206,7 +206,7 @@ footer.year {
   font-variant-numeric: oldstyle-nums
 }
 
-svg {
+#projects-pie-plot {
   max-width: 20em;
   margin-block: 2em;
 

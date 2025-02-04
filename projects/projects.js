@@ -44,8 +44,6 @@ data.forEach((d, idx) => {
           .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); 
 })
 
-let query = '';
-
 function setQuery(newQuery) {
     query = newQuery;
     let filteredProjects = projects.filter((project) => {
@@ -58,46 +56,53 @@ function setQuery(newQuery) {
     });
     return filteredProjects
 }
+
+function renderPieChart(projectsGiven) {
+   // re-calculate rolled data
+   let newRolledData = d3.rollups(
+    projectsGiven,
+    (v) => v.length,
+    (d) => d.year,
+  );
+
+  // re-calculate data
+  let newData = newRolledData.map(([year, count]) => {
+      return { value: count, label: year };
+  });
+
+  // re-calculate slice generator, arc data, arc, etc.
+  let newSliceGenerator = d3.pie().value((d) => d.value);
+  let newArcData = newSliceGenerator(newData);
+  let newArcs = newArcData.map((d) => arcGenerator(d));
   
-let searchInput = document.getElementsByClassName('searchBar')[0];
-  
+  let newSVG = d3.select('svg'); 
+  newSVG.selectAll('path').remove();
+
+  let newLegend = d3.select('.legend');
+  newLegend.selectAll('li').remove();
+
+  // update paths and legends, refer to steps 1.4 and 2.2
+  newArcs.forEach((arc, idx) => {
+      newSVG
+      .append('path')
+      .attr('d', arc)
+      .attr('fill', colors(idx)) 
+  })
+
+  newData.forEach((d, idx) => {
+      newLegend.append('li')
+      .attr('style', `--color:${colors(idx)}`)
+      .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); 
+  })
+}
+renderPieChart(projects);
+
+let query = '';
+let searchInput = document.querySelector('.searchBar');
+
 searchInput.addEventListener('input', (event) => {
     let filteredProjects = setQuery(event.target.value);
+   
     renderProjects(filteredProjects, projectsContainer, 'h2');
-    // re-calculate rolled data
-    let newRolledData = d3.rollups(
-      filteredProjects,
-      (v) => v.length,
-      (d) => d.year,
-    );
-
-    // re-calculate data
-    let newData = newRolledData.map(([year, count]) => {
-        return { value: count, label: year };
-    });
-
-    // re-calculate slice generator, arc data, arc, etc.
-    let newSliceGenerator = d3.pie().value((d) => d.value);
-    let newArcData = newSliceGenerator(newData);
-    let newArcs = newArcData.map((d) => arcGenerator(d));
-    
-    let newSVG = d3.select('svg'); 
-    newSVG.selectAll('path').remove();
-
-    let newLegend = d3.select('.legend');
-    newLegend.selectAll('li').remove();
-
-    // update paths and legends, refer to steps 1.4 and 2.2
-    newArcs.forEach((arc, idx) => {
-        newSVG
-        .append('path')
-        .attr('d', arc)
-        .attr('fill', colors(idx)) 
-    })
-
-    newData.forEach((d, idx) => {
-        newLegend.append('li')
-        .attr('style', `--color:${colors(idx)}`)
-        .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); 
-})
+    renderPieChart(filteredProjects);
 });
