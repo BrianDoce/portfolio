@@ -44,6 +44,9 @@ data.forEach((d, idx) => {
           .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); 
 })
 
+let query = '';
+let selectedIndex = -1;
+
 function setQuery(newQuery) {
     query = newQuery;
     let filteredProjects = projects.filter((project) => {
@@ -55,6 +58,15 @@ function setQuery(newQuery) {
         return true;
     });
     return filteredProjects
+}
+
+function filterProjectsByYear(year) {
+    if (selectedIndex === -1) {
+        renderProjects(projects, projectsContainer, 'h2');
+    } else {
+        let filteredProjects = projects.filter((project) => project.year === year);
+        renderProjects(filteredProjects, projectsContainer, 'h2');
+    }
 }
 
 function renderPieChart(projectsGiven) {
@@ -87,17 +99,36 @@ function renderPieChart(projectsGiven) {
       .append('path')
       .attr('d', arc)
       .attr('fill', colors(idx)) 
+      .on('click', () => {
+        selectedIndex = selectedIndex === idx ? -1 : idx;
+        newSVG.selectAll('path').attr('class', (_, idx) => (selectedIndex === idx ? 'selected' : ''));
+        newLegend.selectAll('li').attr('class', (_, idx) => (selectedIndex === idx ? 'selected' : ''));
+        if (selectedIndex === -1) {
+            renderProjects(projects, projectsContainer, 'h2');
+          } else {
+            filterProjectsByYear(newData[selectedIndex].label);
+          }
+    });
   })
 
   newData.forEach((d, idx) => {
       newLegend.append('li')
       .attr('style', `--color:${colors(idx)}`)
-      .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); 
-  })
+      .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`)
+      .on('click', () => {
+        selectedIndex = selectedIndex === idx ? -1 : idx;
+        newSVG.selectAll('path').attr('class', (_, idx) => (selectedIndex === idx ? 'selected' : ''));
+        newLegend.selectAll('li').attr('class', (_, idx) => (selectedIndex === idx ? 'selected' : ''));
+        if (selectedIndex === -1) {
+            renderProjects(projects, projectsContainer, 'h2');
+          } else {
+            filterProjectsByYear(newData[selectedIndex].label);
+          }
+        });
+  });
 }
 renderPieChart(projects);
 
-let query = '';
 let searchInput = document.querySelector('.searchBar');
 
 searchInput.addEventListener('input', (event) => {

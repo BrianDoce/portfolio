@@ -265,3 +265,25 @@ footer.year {
   gap: 2rem;
   flex: 1;
 }
+
+&:has(path:hover) {
+  path:not(:hover) {
+    opacity: 0.5;
+  }
+}
+
+path {
+  transition: 300ms;
+}
+
+.selected {
+  --color: oklch(60% 45% 0) !important;
+
+  &:is(path) {
+    fill: var(--color);
+  }
+}
+
+path {
+  cursor: pointer;
+}
