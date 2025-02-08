@@ -45,6 +45,18 @@ data.forEach((d, idx) => {
 })
 
 let query = '';
+let selectedYear = null;
+
+// function applyFilters() {
+//     let filteredProjects = projects.filter(project => {
+//         let matchesQuery = !query || Object.values(project).join(' ').toLowerCase().includes(query.toLowerCase());
+//         let matchesYear = !selectedYear || project.year === selectedYear;
+//         return matchesQuery && matchesYear;
+//     });
+//     renderProjects(filteredProjects, projectsContainer, 'h2');
+//     renderPieChart(filteredProjects);
+// }
+
 let selectedIndex = -1;
 
 function setQuery(newQuery) {
@@ -61,12 +73,20 @@ function setQuery(newQuery) {
 }
 
 function filterProjectsByYear(year) {
-    if (selectedIndex === -1) {
-        renderProjects(projects, projectsContainer, 'h2');
-    } else {
-        let filteredProjects = projects.filter((project) => project.year === year);
-        renderProjects(filteredProjects, projectsContainer, 'h2');
-    }
+    // if (selectedIndex === -1) {
+    //     renderProjects(projects, projectsContainer, 'h2');
+    // } else {
+    //     let filteredProjects = projects.filter((project) => project.year === year);
+    //     renderProjects(filteredProjects, projectsContainer, 'h2');
+    // }
+
+    let filteredProjects = projects.filter((project) => {
+        let matchesYear = selectedIndex === -1 || project.year === year;
+        let matchesQuery = !query || Object.values(project).join(' ').toLowerCase().includes(query.toLowerCase());
+        return matchesYear && matchesQuery;
+    });
+
+    renderProjects(filteredProjects, projectsContainer, 'h2');
 }
 
 function renderPieChart(projectsGiven) {
@@ -100,14 +120,20 @@ function renderPieChart(projectsGiven) {
       .attr('d', arc)
       .attr('fill', colors(idx)) 
       .on('click', () => {
+        // selectedYear = selectedYear === newData[idx].label ? null : newData[idx].label;
+        // applyFilters();
+
         selectedIndex = selectedIndex === idx ? -1 : idx;
         newSVG.selectAll('path').attr('class', (_, idx) => (selectedIndex === idx ? 'selected' : ''));
         newLegend.selectAll('li').attr('class', (_, idx) => (selectedIndex === idx ? 'selected' : ''));
-        if (selectedIndex === -1) {
-            renderProjects(projects, projectsContainer, 'h2');
-          } else {
-            filterProjectsByYear(newData[selectedIndex].label);
-          }
+
+        filterProjectsByYear(selectedIndex === -1 ? null : newData[selectedIndex].label);
+
+        // if (selectedIndex === -1) {
+        //     renderProjects(projects, projectsContainer, 'h2');
+        //   } else {
+        //     filterProjectsByYear(newData[selectedIndex].label);
+        //   }
     });
   })
 
@@ -116,6 +142,9 @@ function renderPieChart(projectsGiven) {
       .attr('style', `--color:${colors(idx)}`)
       .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`)
       .on('click', () => {
+        // selectedYear = selectedYear === d.label ? null : d.label;
+        // applyFilters();
+
         selectedIndex = selectedIndex === idx ? -1 : idx;
         newSVG.selectAll('path').attr('class', (_, idx) => (selectedIndex === idx ? 'selected' : ''));
         newLegend.selectAll('li').attr('class', (_, idx) => (selectedIndex === idx ? 'selected' : ''));
@@ -127,6 +156,12 @@ function renderPieChart(projectsGiven) {
         });
   });
 }
+
+// document.querySelector('.searchBar').addEventListener('input', (event) => {
+//     query = event.target.value;
+//     applyFilters();
+// });
+
 renderPieChart(projects);
 
 let searchInput = document.querySelector('.searchBar');
