@@ -1,5 +1,3 @@
-console.log('IT’S ALIVE!');
-
 function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
@@ -17,8 +15,8 @@ let pages = [
     { url: 'projects/', title: 'Projects' },
     { url: 'Resume/', title: 'Resume'},
     { url: 'contact/', title: 'Contact'},
+    { url: 'meta/', title: 'Meta'},
     { url: 'https://github.com/BrianDoce', title: 'GitHub'}
-
 ];
 
 let nav = document.createElement('nav');
