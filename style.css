@@ -340,3 +340,55 @@ path {
   stroke: #e89f47; 
   opacity: 0.6;
 }
+
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.8);
+  color: white;
+  font-size: 14px;
+  border-radius: 6px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  opacity: 0; 
+  transition: opacity 0.2s ease-in-out;
+  backdrop-filter: blur(8px);
+}
+ 
+
+dl.info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 10px;
+  margin: 0;
+}
+
+dl.info dt {
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+dl.info dd {
+  margin: 0;
+}
+
+circle {
+  transition: transform 200ms ease;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+
+dl.info {
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
