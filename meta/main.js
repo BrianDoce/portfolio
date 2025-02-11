@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   createScatterplot();
 });
 
-let commits = d3.groups(data, (d) => d.commit);
+let commits = [];
 function processCommits() {
     commits = d3
       .groups(data, (d) => d.commit)
@@ -99,6 +99,8 @@ function displayStats() {
     dl.append('dt').text('Longest Line');
     dl.append('dd').text(maxLength);
 }
+let xScale, yScale;
+
 function createScatterplot() {
     const width = 1000;
     const height = 600;
@@ -110,13 +112,13 @@ function createScatterplot() {
     .attr('viewBox', `0 0 ${width} ${height}`)
     .style('overflow', 'visible');
 
-    const xScale = d3
+    xScale = d3
     .scaleTime()
     .domain(d3.extent(commits, (d) => d.datetime))
     .range([0, width])
     .nice();
     
-    const yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
+    yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
         
     const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
     const rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([5, 30]); // adjust these values based on your experimentation
@@ -189,6 +191,7 @@ function createScatterplot() {
             .style('fill-opacity', 0.7) // Restore transparency
             .attr('stroke', 'none'); // Remove stroke after hover
         });
+    brushSelector();
 }
 
 function updateTooltipContent(commit) {
@@ -215,4 +218,96 @@ function updateTooltipPosition(event) {
     tooltip.style.top = `${event.clientY}px`;
 }
 
+function brushSelector() {
+    const svg = document.querySelector('svg');
+    d3.select(svg).call(d3.brush().on('start brush end', brushed));
 
+    // Raise dots and everything after overlay
+    d3.select(svg).selectAll('.dots, .overlay ~ *').raise();
+}
+
+let brushSelection = null;
+
+function brushed(event) {
+    brushSelection = event.selection;
+    updateSelection();
+    updateSelectionCount();
+    updateLanguageBreakdown();
+}
+
+function isCommitSelected(commit) {
+    if (!brushSelection) {
+      return false;
+    }
+    // TODO: return true if commit is within brushSelection
+    // and false if not
+    const min = { x: brushSelection[0][0], y: brushSelection[0][1] }; 
+    const max = { x: brushSelection[1][0], y: brushSelection[1][1] }; 
+    
+    const x = xScale(commit.date); 
+    const y = yScale(commit.hourFrac); 
+
+    return x >= min.x && x <= max.x && y >= min.y && y <= max.y; 
+
+    // const [[x0, y0], [x1, y1]] = brushSelection;
+    // const x = xScale(commit.datetime);
+    // const y = yScale(commit.hourFrac);
+
+    // return x0 <= x && x <= x1 && y0 <= y && y <= y1;
+}
+  
+function updateSelection() {
+    const selectedData = commits.filter(d => isCommitSelected(d));
+    console.log(selectedData)
+    // Update visual state of dots based on selection
+    d3.selectAll('circle').classed('selected', (d) => isCommitSelected(d));
+}
+
+function updateSelectionCount() {
+    const selectedCommits = brushSelection
+      ? commits.filter(isCommitSelected)
+      : [];
+  
+    const countElement = document.getElementById('selection-count');
+    countElement.textContent = `${
+      selectedCommits.length || 'No'
+    } commits selected`;
+  
+    return selectedCommits;
+}
+
+function updateLanguageBreakdown() {
+    const selectedCommits = brushSelection
+      ? commits.filter(isCommitSelected)
+      : [];
+    const container = document.getElementById('language-breakdown');
+  
+    if (selectedCommits.length === 0) {
+      container.innerHTML = '';
+      return;
+    }
+    const requiredCommits = selectedCommits.length ? selectedCommits : commits;
+    const lines = requiredCommits.flatMap((d) => d.lines);
+  
+    // Use d3.rollup to count lines per language
+    const breakdown = d3.rollup(
+      lines,
+      (v) => v.length,
+      (d) => d.type
+    );
+  
+    // Update DOM with breakdown
+    container.innerHTML = '';
+  
+    for (const [language, count] of breakdown) {
+      const proportion = count / lines.length;
+      const formatted = d3.format('.1~%')(proportion);
+  
+      container.innerHTML += `
+              <dt>${language}</dt>
+              <dd>${count} lines (${formatted})</dd>
+          `;
+    }
+  
+    return breakdown;
+  }
