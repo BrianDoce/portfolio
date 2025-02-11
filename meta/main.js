@@ -14,6 +14,7 @@ async function loadData() {
 
 document.addEventListener('DOMContentLoaded', async () => {
   await loadData();
+  processCommits();
   createScatterplot();
 });
 
@@ -101,6 +102,7 @@ function displayStats() {
 function createScatterplot() {
     const width = 1000;
     const height = 600;
+    const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
 
     const svg = d3
     .select('#chart')
@@ -115,16 +117,9 @@ function createScatterplot() {
     .nice();
     
     const yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
-
-    const dots = svg.append('g').attr('class', 'dots');
-    dots
-    .selectAll('circle')
-    .data(commits)
-    .join('circle')
-    .attr('cx', (d) => xScale(d.datetime))
-    .attr('cy', (d) => yScale(d.hourFrac))
-    .attr('r', 5)
-    .attr('fill', 'steelblue');
+        
+    const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
+    const rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([5, 30]); // adjust these values based on your experimentation
     
     const margin = { top: 10, right: 10, bottom: 30, left: 20 };
     const usableArea = {
@@ -172,11 +167,28 @@ function createScatterplot() {
         const hour = i % 24; // Ensure we cycle through 24-hour format
         d3.select(this).attr('class', hour >= 6 && hour < 18 ? 'day' : 'night');
   });
-    dots.on('mouseenter', (event, commit) => {
-        updateTooltipContent(commit);
-        updateTooltipVisibility(true);
-        updateTooltipPosition(event);
-    });
+
+    const dots = svg.append('g').attr('class', 'dots');
+    dots
+        .selectAll('circle')
+        .data(sortedCommits)
+        .join('circle')
+        .attr('cx', (d) => xScale(d.datetime))
+        .attr('cy', (d) => yScale(d.hourFrac))
+        .attr('r', (d) => rScale(d.totalLines)) // Use radius scale
+        .style('fill', 'steelblue')
+        .style('fill-opacity', 0.7) // Add transparency for overlapping dots
+        .on('mouseenter', function (event, d) {
+        d3.select(event.currentTarget)
+            .style('fill-opacity', 1) // Highlight on hover
+            .attr('stroke', '#333') // Optional: add stroke for better visibility
+            .attr('stroke-width', 2);
+        })
+        .on('mouseleave', function () {
+        d3.select(event.currentTarget)
+            .style('fill-opacity', 0.7) // Restore transparency
+            .attr('stroke', 'none'); // Remove stroke after hover
+        });
 }
 
 function updateTooltipContent(commit) {
@@ -202,3 +214,5 @@ function updateTooltipPosition(event) {
     tooltip.style.left = `${event.clientX}px`;
     tooltip.style.top = `${event.clientY}px`;
 }
+
+
