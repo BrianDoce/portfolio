@@ -288,21 +288,20 @@ path {
   cursor: pointer;
 }
 
-.stats {
+#stats {
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-
-.stats dl {
+#stats dl {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 40px;
   text-align: center;
 }
 
-.stats dt {
+#stats dt {
   color: #666;
   font-size: 14px;
   text-transform: uppercase;
@@ -310,9 +309,34 @@ path {
   font-weight: normal;
 }
 
-.stats dd {
+#stats dd {
   font-size: 36px;
   font-weight: bold;
   margin: 0;
   color: #24292e;
+}
+
+
+#stats h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+
+.gridlines line {
+  stroke: #ddd; 
+  stroke-width: 2px;
+  stroke-dasharray: 0; 
+}
+
+
+.gridlines line.night {
+  stroke: #4a90e2;
+  opacity: 0.6;
+}
+
+.gridlines line.day {
+  stroke: #e89f47; 
+  opacity: 0.6;
 }
