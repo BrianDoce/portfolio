@@ -444,4 +444,5 @@ circle.selected {
   font-weight: bold;
   margin: 0;
   text-align: center;
-  flex: 1
+  flex: 1;
+}
