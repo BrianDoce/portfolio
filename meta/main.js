@@ -257,8 +257,6 @@ function isCommitSelected(commit) {
 }
   
 function updateSelection() {
-    const selectedData = commits.filter(d => isCommitSelected(d));
-    console.log(selectedData)
     // Update visual state of dots based on selection
     d3.selectAll('circle').classed('selected', (d) => isCommitSelected(d));
 }

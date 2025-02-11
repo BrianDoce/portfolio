@@ -408,7 +408,7 @@ dl.info[hidden]:not(:hover, :focus-within) {
 }
 
 circle.selected {
-  fill: #ff6b6b;
+  fill: #ff6b6b !important;
 }
 
 #selection-count {
