@@ -9,7 +9,6 @@ async function loadData() {
       date: new Date(row.date + 'T00:00' + row.timezone),
       datetime: new Date(row.datetime),
   }));
-  data = data.filter(d => d !== null && d.line && d.depth && d.length && !isNaN(d.datetime));
   displayStats();
 }
 
@@ -110,12 +109,8 @@ let xScale, yScale;
 function createScatterplot() {
     const width = 1000;
     const height = 600;
-    if (commits.length === 0) {
-      console.error("No commits to display in scatterplot.");
-      return;
-  }
-  
     const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
+
     const svg = d3
     .select('#chart')
     .append('svg')
@@ -241,13 +236,6 @@ function brushSelector() {
 let brushSelection = null;
 
 function brushed(event) {
-  if (!event.selection) {
-    brushSelection = null;
-    updateSelection();
-    updateSelectionCount();
-    updateLanguageBreakdown();
-    return;
-  }
     brushSelection = event.selection;
     updateSelection();
     updateSelectionCount();
