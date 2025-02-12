@@ -89,15 +89,26 @@ function displayStats() {
     dl.append('dt').text('Average file length');
     dl.append('dd').text(avgFileLength.toFixed(2));
 
-    // Maximum depth
-    let maxDepth = d3.max(data, d => d.depth);
-    dl.append('dt').text('Maximum depth');
-    dl.append('dd').text(maxDepth);
+    // Time of Day That Most Work is Done
+    const workByPeriod = d3.rollups(
+      data,
+      (v) => v.length,
+      (d) => new Date(d.datetime).toLocaleString('en', { dayPeriod: 'short' })
+    );
+    const maxPeriod = d3.greatest(workByPeriod, (d) => d[1])?.[0];
+    dl.append('dt').text('Time of Day That Most Work is Done');
+    dl.append('dd').text(maxPeriod);
 
-    // Average depth
-    let avgDepth = d3.mean(data, d => d.depth);
-    dl.append('dt').text('Average depth');
-    dl.append('dd').text(avgDepth.toFixed(2));
+
+    // Active Day
+    const workByDay = d3.rollups(
+      data,
+      (v) => v.length, // Count occurrences (lines of code modified)
+      (d) => new Date(d.datetime).toLocaleString('en', { weekday: 'long' }) // Get weekday
+    );
+    const maxDay = d3.greatest(workByDay, (d) => d[1])?.[0]; 
+    dl.append('dt').text('Day That Most Work is Done');
+    dl.append('dd').text(maxDay);
 
     // Max line length
     let maxLength = d3.max(data, d => d.length);
@@ -172,7 +183,7 @@ function createScatterplot() {
     gridlines.selectAll('line')
     .each(function(_, i) {
         const hour = i % 24; // Ensure we cycle through 24-hour format
-        d3.select(this).attr('class', hour >= 6 && hour < 18 ? 'day' : 'night');
+        d3.select(this).attr('class', hour >= 3 && hour < 10 ? 'day' : 'night');
   });
 
     const dots = svg.append('g').attr('class', 'dots');
