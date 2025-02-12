@@ -1,15 +1,16 @@
 let data = [];
 
 async function loadData() {
-    data = await d3.csv('loc.csv', (row) => ({
-        ...row,
-        line: Number(row.line), // or just +row.line
-        depth: Number(row.depth),
-        length: Number(row.length),
-        date: new Date(row.date + 'T00:00' + row.timezone),
-        datetime: new Date(row.datetime),
-    }));
-    displayStats();
+  data = await d3.csv('loc.csv', (row) => ({
+      ...row,
+      line: Number(row.line), // or just +row.line
+      depth: Number(row.depth),
+      length: Number(row.length),
+      date: new Date(row.date + 'T00:00' + row.timezone),
+      datetime: new Date(row.datetime),
+  }));
+  data = data.filter(d => d !== null && d.line && d.depth && d.length && !isNaN(d.datetime));
+  displayStats();
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -20,38 +21,43 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 let commits = [];
 function processCommits() {
-    commits = d3
-      .groups(data, (d) => d.commit)
-      .map(([commit, lines]) => {
+  if (!data || data.length === 0) {
+    console.error("No data loaded before processing commits.");
+    return;
+  }
+  commits = d3
+    .groups(data, (d) => d.commit)
+    .map(([commit, lines]) => {
         // Each 'lines' array contains all lines modified in this commit
         // All lines in a commit have the same author, date, etc.
         // So we can get this information from the first line
-        let first = lines[0];
-        
-        // What information should we return about this commit?
-        let { author, date, time, timezone, datetime } = first;
+  
+      let first = lines.length > 0 ? lines[0] : null;
+      if (!first) return null; // Skip empty commits
+    // What information should we return about this commit?
+    let { author, date, time, timezone, datetime } = first;
 
-        let ret = {
-            id: commit,
-            url: 'https://github.com/BrianDoce/portfolio/commit/' + commit,
-            author,
-            date,
-            time,
-            timezone,
-            datetime,
-            hourFrac: datetime.getHours() + datetime.getMinutes() / 60,
-            totalLines: lines.length,
-          };
-        Object.defineProperty(ret, 'lines', {
-            value: lines,
-            enumerable: false,
-            configurable: false,
-            writable: false,
-        });
-    
-          return ret;
-      });
-  }
+    let ret = {
+        id: commit,
+        url: 'https://github.com/BrianDoce/portfolio/commit/' + commit,
+        author,
+        date,
+        time,
+        timezone,
+        datetime,
+        hourFrac: datetime.getHours() + datetime.getMinutes() / 60,
+        totalLines: lines.length,
+      };
+    Object.defineProperty(ret, 'lines', {
+        value: lines,
+        enumerable: false,
+        configurable: false,
+        writable: false,
+    });
+
+      return ret;
+  }).filter(d => d !== null); 
+}
 
 function displayStats() {
     // Process commits first
@@ -104,8 +110,12 @@ let xScale, yScale;
 function createScatterplot() {
     const width = 1000;
     const height = 600;
+    if (commits.length === 0) {
+      console.error("No commits to display in scatterplot.");
+      return;
+  }
+  
     const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
-
     const svg = d3
     .select('#chart')
     .append('svg')
@@ -180,16 +190,18 @@ function createScatterplot() {
         .attr('r', (d) => rScale(d.totalLines)) // Use radius scale
         .style('fill', 'steelblue')
         .style('fill-opacity', 0.7) // Add transparency for overlapping dots
-        .on('mouseenter', function (event, d) {
+        .on('mouseenter', function (event, commit) {
         d3.select(event.currentTarget)
             .style('fill-opacity', 1) // Highlight on hover
             .attr('stroke', '#333') // Optional: add stroke for better visibility
             .attr('stroke-width', 2);
+            updateTooltipContent(commit)
         })
         .on('mouseleave', function () {
         d3.select(event.currentTarget)
             .style('fill-opacity', 0.7) // Restore transparency
             .attr('stroke', 'none'); // Remove stroke after hover
+            updateTooltipContent({});
         });
     brushSelector();
 }
@@ -229,6 +241,13 @@ function brushSelector() {
 let brushSelection = null;
 
 function brushed(event) {
+  if (!event.selection) {
+    brushSelection = null;
+    updateSelection();
+    updateSelectionCount();
+    updateLanguageBreakdown();
+    return;
+  }
     brushSelection = event.selection;
     updateSelection();
     updateSelectionCount();
