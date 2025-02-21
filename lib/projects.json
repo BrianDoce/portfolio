@@ -9,9 +9,9 @@
     {
         "title": "Bike Watching Visualization",
         "year": "2025",
-        "image": "../images/bike.jpg",
+        "image": "https://briandoce.github.io/portfolio/images/bike.jpg",
         "description": "Created an interactive map visualization for bike traffic in Boston.",
-        "url": "https://briandoce.github.io/portfolio/images/bike.jpg"
+        "url": "https://briandoce.github.io/WheelieCool/"
     },
     {
         "title": "Reviews Sentiment Analysis",
