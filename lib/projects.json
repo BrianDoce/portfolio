@@ -2,12 +2,12 @@
     {
         "title": "Built Portfolio Website",
         "year": "2025",
-        "image": "../images/portfolio.jpg",
+        "image": "../images/portfoliopic.jpg",
         "description": "Designed and built a portfolio website to showcase my projects.",
         "url": "https://briandoce.github.io/portfolio/"
     },
     {
-        "title": "Tableau Visualization",
+        "title": "Bike Watching Visualization",
         "year": "2025",
         "image": "../images/bike.jpg",
         "description": "Created an interactive map visualization for bike traffic in Boston.",
