@@ -9,7 +9,7 @@
     {
         "title": "Bike Watching Visualization",
         "year": "2025",
-        "image": "../images/bike.jpg",
+        "image": "https://github.com/BrianDoce/portfolio/blob/main/images/bike.jpg",
         "description": "Created an interactive map visualization for bike traffic in Boston.",
         "url": "https://briandoce.github.io/WheelieCool/"
     },
