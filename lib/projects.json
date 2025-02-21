@@ -2,7 +2,7 @@
     {
         "title": "Built Portfolio Website",
         "year": "2025",
-        "image": "../images/ProjectPage.jpg",
+        "image": "https://briandoce.github.io/portfolio/images/ProjectPage.jpg",
         "description": "Designed and built a portfolio website to showcase my projects.",
         "url": "https://briandoce.github.io/portfolio/"
     },
@@ -11,7 +11,7 @@
         "year": "2025",
         "image": "../images/bike.jpg",
         "description": "Created an interactive map visualization for bike traffic in Boston.",
-        "url": "https://briandoce.github.io/WheelieCool/"
+        "url": "https://briandoce.github.io/portfolio/images/bike.jpg"
     },
     {
         "title": "Reviews Sentiment Analysis",
