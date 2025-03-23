@@ -1,0 +1,295 @@
+/* Reset and Base Styles */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  :root {
+    --primary-color: #0066cc;
+    --secondary-color: #555;
+    --background-light: #fff;
+    --text-light: #333;
+    --background-dark: #1e1e1e;
+    --text-dark: #f0f0f0;
+    --accent-light: #f5f5f5;
+    --accent-dark: #2a2a2a;
+    --border-light: #ddd;
+    --border-dark: #444;
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  /* Color Scheme Handling */
+  :root[style*="color-scheme: light"],
+  :root:not([style*="color-scheme"]) {
+    color-scheme: light;
+    color: var(--text-light);
+    background-color: var(--background-light);
+  }
+  
+  :root[style*="color-scheme: dark"] {
+    color-scheme: dark;
+    color: var(--text-dark);
+    background-color: var(--background-dark);
+  }
+  
+  /* Layout */
+  body {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  /* Navigation from global.js */
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+  
+  :root[style*="color-scheme: dark"] nav {
+    border-color: var(--border-dark);
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  
+  nav a:hover {
+    background-color: var(--accent-light);
+  }
+  
+  :root[style*="color-scheme: dark"] nav a:hover {
+    background-color: var(--accent-dark);
+  }
+  
+  nav a.current {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  /* Theme Selector */
+  .color-scheme {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+  }
+  
+  .color-scheme select {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-light);
+    background-color: var(--background-light);
+    color: var(--text-light);
+  }
+  
+  :root[style*="color-scheme: dark"] .color-scheme select {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+    border-color: var(--border-dark);
+  }
+  
+  /* Main Resume Title */
+  h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    text-align: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+  }
+  
+  /* Sections */
+  section {
+    margin-bottom: 3rem;
+  }
+  
+  section > header {
+    margin-bottom: 1.5rem;
+  }
+  
+  section > header h2 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+  
+  section > header h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary-color);
+  }
+  
+  /* Articles in sections */
+  article {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    background-color: var(--accent-light);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  :root[style*="color-scheme: dark"] article {
+    background-color: var(--accent-dark);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  article:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  :root[style*="color-scheme: dark"] article:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  article header h3 {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Education section specific */
+  section:first-of-type article p {
+    margin-bottom: 0.75rem;
+  }
+  
+  /* List styles */
+  ul {
+    list-style-position: inside;
+    padding-left: 1rem;
+    margin-top: 0.75rem;
+  }
+  
+  ul li {
+    margin-bottom: 0.5rem;
+    position: relative;
+  }
+  
+  section:last-of-type ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    gap: 2rem;
+  }
+  
+  section:last-of-type ul li {
+    background-color: var(--accent-light);
+    padding: 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    flex: 1 1 calc(50% - 1rem);
+  }
+  
+  :root[style*="color-scheme: dark"] section:last-of-type ul li {
+    background-color: var(--accent-dark);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Project bullets */
+  article ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  article ul li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.75rem;
+  }
+  
+  article ul li::before {
+    content: "•";
+    color: var(--primary-color);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  
+  /* Strong text emphasis */
+  strong {
+    color: var(--secondary-color);
+    font-weight: 600;
+  }
+  
+  :root[style*="color-scheme: dark"] strong {
+    color: #a0a0a0;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    body {
+      padding: 1rem;
+    }
+    
+    h1 {
+      font-size: 2rem;
+    }
+    
+    section > header h2 {
+      font-size: 1.5rem;
+    }
+    
+    article {
+      padding: 1rem;
+    }
+    
+    section:last-of-type ul li {
+      flex: 1 1 100%;
+    }
+    
+    .color-scheme {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
+  /* Print styles for resume */
+  @media print {
+    body {
+      padding: 0;
+      font-size: 12px;
+    }
+    
+    nav, .color-scheme {
+      display: none;
+    }
+    
+    article, section:last-of-type ul li {
+      box-shadow: none;
+      background-color: transparent;
+      border: 1px solid #ddd;
+    }
+    
+    h1 {
+      font-size: 20px;
+    }
+    
+    section > header h2 {
+      font-size: 16px;
+    }
+    
+    article header h3 {
+      font-size: 14px;
+    }
+  }

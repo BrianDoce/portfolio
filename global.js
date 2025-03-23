@@ -120,8 +120,17 @@ export function renderProjects(project, containerElement, headingLevel = 'h2') {
 
     for (const obj of project) {
         const article = document.createElement('article');
+
+        article.classList.add("project-card");
+
+        const link = document.createElement('a');
+        link.href = obj.url || "#"; // Fallback in case no URL exists
+        link.target = "_blank"; // Opens in a new tab
+        link.rel = "noopener noreferrer"; // Security best practice
+        link.style.textDecoration = "none"; // Optional: remove underline
+        link.style.color = "inherit"; // Keep the text color unchanged
         
-        article.innerHTML = `
+        link.innerHTML = `
             <h3>${obj.title}</h3>
             <img src="${obj.image}" alt="${obj.title}">
             <div>
@@ -130,6 +139,7 @@ export function renderProjects(project, containerElement, headingLevel = 'h2') {
             </div>
         `;
         
+        article.appendChild(link);
         containerElement.appendChild(article);
     }
 }

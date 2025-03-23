@@ -9,39 +9,45 @@
     <script src="./index.js" type="module" defer></script>
 </head>
 <body>
-    <!-- <label class="color-scheme">
-        Theme:
-        <select>
-                <option value="light dark">Automatic</option>
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-        </select>
-    </label> -->
-    <!-- <nav>
-        <ul>
-            <li><a href="https://BrianDoce.github.io/portfolio/">Home</a></li>
-            <li><a href="https://BrianDoce.github.io/portfolio/projects/">Projects</a></li>
-            <li><a href="https://BrianDoce.github.io/portfolio/contact/">Contact</a></li>
-            <li><a href="https://github.com/BrianDoce" target="_blank">Profile</a></li>
-            <li><a href="https://BrianDoce.github.io/portfolio/Resume/">Resume</a></li>
-        </ul>
-    </nav> -->
-    <h1>Brian Docena</h1>
-    <p>Hello! My name is Brian. I am currently a student at University of California San Diego, majoring in data science. 
-        I enjoy working on projects that involve data analyzing, visualizations, and 
-        machine learning to extract useful insights. Some of my hobbies include trying 
-        new food places, drawing, and staying active.
-    </p>
+    <div class="wrapper">
+        <!-- Left Column: Profile Section -->
+        <div class="profile-container">
+            <div class="profile-left">
+                <img src="images/IMG_4331.jpg" alt="Profile Picture" class="profile-pic">
+                <h1>Brian Docena</h1>
+                <p>B.S. in Data Science @ UCSD</p>
+                <div class="profile-links">
+                    <a href="mailto:docena.brian@gmail.com" class="icon">
+                        <img src="icons/email.svg" alt="Email"> Email
+                    </a>
+                    <a href="https://github.com/BrianDoce" target="_blank" class="icon">
+                        <img src="icons/github-mark.svg" alt="GitHub"> GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/brian-docena/" target="_blank" class="icon">
+                        <img src="icons/linkedin.svg" alt="LinkedIn"> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
 
-    <img src="images/d-ng-ph-c-h-i-tri-u-hfDv8pW_uvs-unsplash.jpg" alt="Picture of a brown scottish fold cat with yellow eyes.">
-    <h2>Latest Projects</h2>
-    <div class="projects">
-        <!-- Dynamically added content will appear here -->
-    </div>
+        <!-- Right Column: Content Section -->
+        
+        <div class="content">
+            <h2>About Me</h2>
+            <p>Hello! My name is Brian. I am currently a student at University of California San Diego, majoring in data science. 
+                I am pasionate about data analysis, visualization, and machine learning. Some of my hobbies include trying 
+                new food places, drawing, and staying active.
+            </p>
+            <h2>Latest Projects</h2>
+            <div class="projects">
+                <!-- Dynamically added content will appear here -->
+            </div>
 
-    <h2>My GitHub Stats</h2>
-    <div id="profile-stats">
-        <!-- GitHub profile stats will be dynamically inserted here -->
+            <h2>My GitHub Stats</h2>
+            <div id="profile-stats">
+                <!-- GitHub profile stats will be dynamically inserted here -->
+            </div>
+        </div>
     </div>
 </body>
 </html>

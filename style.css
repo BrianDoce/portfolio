@@ -6,6 +6,7 @@ body {
   max-width: 100ch;
   margin-inline: auto;
   padding: 1em;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 nav ul{
@@ -34,9 +35,46 @@ nav a.current {
   border-bottom-color: oklch(80% 3% 200);
 }
 
+
+/* Default Theme Variables */
 :root {
-  --color-accent: oklch(65% 50% 0)
+  --primary-color: #0066cc;
+  --secondary-color: #555;
+  --background-light: #fff;
+  --text-light: #333;
+  --background-dark: #1e1e1e;
+  --text-dark: #f0f0f0;
+  --accent-light: #f5f5f5;
+  --accent-dark: #2a2a2a;
+  --border-light: #ddd;
+  --border-dark: #444;
+  --card-bg-light: #f8f8f8;
+  --card-bg-dark: #292929;
+  --card-text-light: #222;
+  --card-text-dark: #66aaff; /* Blue text for dark mode */
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
 }
+
+:root[color-scheme="light"] {
+  color: var(--text-light);
+  background-color: var(--background-light);
+}
+
+/* Dark Theme */
+:root[color-scheme="dark"] {
+  color: var(--text-dark);
+  background-color: var(--background-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+      color: var(--text-dark);
+      background-color: var(--background-dark);
+  }
+}
+
 
 html {
   accent-color: var(--color-accent)
@@ -90,7 +128,26 @@ button:hover {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
   gap: 2em;
+
+  padding: 1rem;
 } 
+
+/* Hover effect for project cards */
+.projects article {
+  background: var(--card-bg-light);
+  color: var(--card-text-light);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.projects article:hover {
+  background: var(--primary-color); /* Highlight with primary color */
+  color: white; /* Change text color for contrast */
+  transform: translateY(-5px); /* Slight lift effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+}
 
 article {
   grid-template-rows: subgrid;
@@ -445,4 +502,125 @@ circle.selected {
   margin: 0;
   text-align: center;
   flex: 1;
+}
+
+#filter-container {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+#commit-slider {
+  margin-left: 10px;
+}
+
+#selectedTime {
+  margin-left: auto;
+  font-weight: bold;
+}
+/* Wrapper: Two-column layout */
+.wrapper {
+  display: flex;
+  align-items: flex-start; /* Aligns content at the top */
+  justify-content: center;
+  max-width: 1200px;
+  margin: 40px auto;
+  gap: 3rem; /* Space between profile and content */
+}
+
+/* Profile container (left sidebar) */
+.profile-container {
+  width: 300px; /* Fixed width */
+  text-align: center;
+}
+
+/* Profile image */
+.profile-pic {
+  width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: contain; /* Change from 'cover' to 'contain' */
+    object-position: center; /* Center the image */
+    background-color: white; /* Prevent transparency issues */
+    border: 3px solid #ccc;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile links */
+.profile-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+
+/* Content (right side) */
+.content {
+  flex: 1; /* Takes up the remaining space */
+  max-width: 800px;
+  text-align: center; /* Centers project & GitHub stats */
+}
+
+/* Projects and GitHub Stats styling */
+.projects, #profile-stats {
+  margin-top: 20px;
+  padding: 20px;
+  background: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon styling */
+.icon {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  margin: 8px 0;
+}
+
+.icon img {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+/* Right section (text) */
+.profile-right {
+  flex: 1;
+  padding-left: 30px;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Light Mode (default) */
+.icon {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-light); /* Ensures contrast in light mode */
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  transition: color 0.3s ease;
+}
+
+/* Adjust the text color in dark mode */
+:root[style*="color-scheme: dark"] .icon {
+  color: var(--text-dark); /* Ensures better readability in dark mode */
+}
+
+/* Adjust icon size for clarity */
+.icon img {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  filter: invert(0); /* Keeps original colors in light mode */
+}
+
+/* Invert icons in dark mode for better visibility */
+:root[style*="color-scheme: dark"] .icon img {
+  filter: invert(1); /* Makes dark icons appear white in dark mode */
 }
