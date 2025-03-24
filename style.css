@@ -624,3 +624,8 @@ circle.selected {
 :root[style*="color-scheme: dark"] .icon img {
   filter: invert(1); /* Makes dark icons appear white in dark mode */
 }
+
+:root[color-scheme="light"] body {
+  background-color: var(--background-light);
+  color: var(--text-light);
+}
