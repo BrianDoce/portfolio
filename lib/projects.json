@@ -1,5 +1,12 @@
 [
     {
+        "title": "Oxygen Consumption Visualization",
+        "year": "2025",
+        "image": "https://briandoce.github.io/portfolio/images/oxygen.jpg",
+        "description": "Created an interactive visualization of oxygen consumption.",
+        "url": "https://jaw039.github.io/VO2-in-Motion/"
+    },
+    {
         "title": "Built Portfolio Website",
         "year": "2025",
         "image": "https://briandoce.github.io/portfolio/images/ProjectPage.jpg",
@@ -14,34 +21,32 @@
         "url": "https://briandoce.github.io/WheelieCool/"
     },
     {
-        "title": "Reviews Sentiment Analysis",
+        "title": "Car Reviews Sentiment Analysis",
         "year": "2024",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Performed sentiment analysis on car reviews using NLTK Vader."
+        "image": "https://briandoce.github.io/portfolio/images/sentiment.jpg",
+        "description": "Performed sentiment analysis on car reviews using NLTK Vader.",
+        "url": "https://briandoce.github.io/Cars-Sentiment-Analysis/"
     },
     {
-        "title": "Web Scraping with Python",
+        "title": "Recipe Analysis",
         "year": "2024",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Web scraped Edmunds.com using Selenium and BeautifulSoup."
+        "image": "https://briandoce.github.io/portfolio/images/recipeAnalysis.jpg",
+        "description": "Analyzed recipes using statistics and machine learning.",
+        "url": "https://briandoce.github.io/RecipeAnalysis/"
     },
     {
         "title": "Customer Segmentation",
         "year": "2024",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Clustered customers using RFM analysis and k-means."
+        "image": "https://briandoce.github.io/portfolio/images/customersegmentation.jpg",
+        "description": "Clustered customers using RFM analysis and k-means.",
+        "url": "https://briandoce.github.io/Customer-Segmentation-Project/"
     },
     {
-       "title": "Data Visualization with MatPlotLib and Seaborn",
-        "year": "2025",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Created a visualization for DSC106."
-    },
-    {
-        "title": "ETL Pipeline",
-        "year": "2025",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Created a full ETL Pipeline using AWS Services."
+       "title": "Supermarket Dashboard using Excel",
+        "year": "2023",
+        "image": "https://briandoce.github.io/portfolio/images/dashboard.jpg",
+        "description": "Created a dashboard using excel.",
+        "url": "https://briandoce.github.io/Supermarket-Dashboard/"
     },
     {
         "title": "Spotify Recomendation",
