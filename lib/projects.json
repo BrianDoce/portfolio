@@ -49,10 +49,11 @@
         "url": "https://briandoce.github.io/Supermarket-Dashboard/"
     },
     {
-        "title": "Spotify Recomendation",
-        "year": "2023",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Built a recommendation system for Taylor Swift songs."
+        "title": "HR Analytics Dashboard",
+        "year": "2025",
+        "image": "https://briandoce.github.io/portfolio/images/HR Dashboard.jpg",
+        "description": "Created a dashboard using PowerBI",
+        "url": "https://app.powerbi.com/view?r=eyJrIjoiNjY5Zjg1MWMtMWI1Zi00Y2NkLTlhYTAtMmFlYTA0ZDRhNTVmIiwidCI6IjhhMTk4ODczLTRmZWMtNGU3Ni04MTgyLWNhNDc5ZWRiYmQ2MCIsImMiOjZ9"
     },
     {
         "title": "Computer Vision Number Identifier",
