@@ -1,5 +1,12 @@
 [
     {
+        "title": "Performance Dashboard",
+        "year": "2025",
+        "image": "https://briandoce.github.io/portfolio/images/performance dashboard.jpg",
+        "description": "Created a performance dashboard in Tableau.",
+        "url": "https://public.tableau.com/app/profile/brian.docena/viz/Book1_17431818665530/SalesDashboard?publish=yes"
+    },
+    {
         "title": "HR Analytics Dashboard",
         "year": "2025",
         "image": "https://briandoce.github.io/portfolio/images/HR Dashboard.jpg",
@@ -72,11 +79,5 @@
         "year": "2022",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Created a calculator using python."
-    },
-    {
-        "title": "BlackJack Game",
-        "year": "2022",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Created blackjack using python."
     }
 ]

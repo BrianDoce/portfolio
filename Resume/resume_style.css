@@ -343,3 +343,13 @@ label.color-scheme {
   font-size: 85%;
   font-family: inherit;
 }
+
+.clickable-article {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Keep text color same */
+  display: block; /* Ensure it behaves like a block */
+}
+
+.clickable-article article {
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
